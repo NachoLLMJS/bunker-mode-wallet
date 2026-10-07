@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Non-custodial Ethereum wallet migration interface",
   "scripts": {
-    "start": "node server.js",
+    "start": "node local-server.js",
     "test": "node migration-core.test.js && node operational-ui.test.js && node security-regression.test.js"
   }
 }
