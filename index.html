@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="BUNKER MODE WALLET is a non-custodial wallet migration planner for moving assets to a fresh, receive-only Ethereum address.">
+  <title>BUNKER MODE WALLET</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/bunker-mode-wallet-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="noise"></div>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="BUNKER MODE WALLET home"><img class="brand-logo" src="assets/bunker-mode-wallet-logo.png" width="512" height="512" alt=""><span>BUNKER MODE WALLET</span></a>
+    <nav class="topnav" aria-label="Primary navigation"><a href="#migrate">MIGRATE</a><a href="#scanner">SCANNER</a><a href="#system">SYSTEM</a><a href="#manifest">MANIFEST</a><span class="prototype">DIRECT MODE</span></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div>
+          <div class="eyebrow">Fresh-address migration infrastructure</div>
+          <h1>MOVE<br>BEFORE<br>YOU <span>SIGN.</span></h1>
+          <p class="hero-lede">Map every asset. Verify a fresh destination. Build the migration sequence. Keep funds moving directly from your old wallet to your new one.</p>
+        </div>
+        <div class="hero-bottom">
+          <div class="cta-row"><a class="btn primary" href="#migrate">Build migration <span>↓</span></a><a class="btn" href="#scanner">Inspect first</a></div>
+          <div class="origin-note">Inspired by the call to move assets into fresh addresses whose public keys remain hidden behind a hash.</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="BUNKER MODE WALLET protected vault illustration">
+        <div class="grid-lines"></div><div class="visual-label vl1">RECEIVE-ONLY DESTINATION<br>PUBLIC KEY: HASHED</div>
+        <div class="bunker-art-wrap"><img class="bunker-art" src="assets/bunker-mode-wallet-hero.png" width="1200" height="1200" alt="Illustrated reinforced bunker vault"></div>
+        <div class="visual-label vl2"><strong>NO CUSTODY / NO BLIND APPROVALS</strong>ETHEREUM MAINNET · READ-ONLY FIRST</div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>NO SEED PHRASES</span><span>DIRECT ASSET ROUTING</span><span>RECEIPT VERIFICATION</span><span>DESTINATION PRECHECK</span><span>NO PROJECT TREASURY</span><span>NO SEED PHRASES</span><span>DIRECT ASSET ROUTING</span><span>RECEIPT VERIFICATION</span><span>DESTINATION PRECHECK</span><span>NO PROJECT TREASURY</span></div></div>
+
+    <section class="section" id="scanner">
+      <div class="section-head"><div><div class="eyebrow">01 / Live account intelligence</div><h2>Start with evidence.</h2></div><p class="section-intro">Read Ethereum state without connecting a wallet. The prototype checks account code, transaction nonce, native balance and block evidence through public RPC infrastructure.</p></div>
+      <div class="console">
+        <div class="console-bar"><span>BUNKER MODE WALLET / EXPOSURE SCANNER</span><span class="console-status"><i class="dot"></i> READ-ONLY</span></div>
+        <div class="scanner-grid">
+          <form class="scanner-form" id="scanForm">
+            <div class="field"><label for="source">Current public address</label><div class="input-wrap"><input id="source" autocomplete="off" spellcheck="false" maxlength="42" placeholder="0x…"><button class="paste" type="button" data-paste="source">PASTE</button></div></div>
+            <div class="field"><label for="destination">Proposed fresh destination</label><div class="input-wrap"><input id="destination" autocomplete="off" spellcheck="false" maxlength="42" placeholder="0x…"><button class="paste" type="button" data-paste="destination">PASTE</button></div></div>
+            <div class="form-actions"><button class="btn primary" id="scanButton" type="submit">Run live preflight</button><button class="btn" id="demoButton" type="button">Load public example</button></div>
+            <div class="error" id="errorBox"></div>
+            <p class="privacy">No wallet connection. No signature. No transaction. Public addresses are sent only to public Ethereum RPC and explorer infrastructure. A zero nonce is an indicator, never proof of ownership or safety.</p>
+          </form>
+          <div class="report" id="report">
+            <div class="report-empty" id="reportEmpty"><div class="ring">Ø</div><h3>Awaiting two addresses.</h3><p>We will compare source exposure with destination account state at a pinned Ethereum block.</p></div>
+            <div class="report-live" id="reportLive"><div class="micro">DESTINATION RESULT</div><div class="status-large" id="statusLarge">Checking…</div><div class="progress" id="progress"><i></i></div><dl class="facts"><div class="fact"><dt>Source nonce</dt><dd id="sourceNonce">—</dd></div><div class="fact"><dt>Source ETH</dt><dd id="sourceBalance">—</dd></div><div class="fact"><dt>Destination nonce</dt><dd id="destNonce">—</dd></div><div class="fact"><dt>Destination code</dt><dd id="destCode">—</dd></div><div class="fact wide"><dt>Snapshot block</dt><dd id="blockEvidence">—</dd></div></dl></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="migrate">
+      <div class="section-head"><div><div class="eyebrow">02 / Operational migration console</div><h2>Move assets directly.</h2></div><p class="section-intro">Connect the source wallet only when you are ready. Add exact ETH, ERC-20, ERC-721 or ERC-1155 assets; BUNKER MODE WALLET verifies ownership or balance, keeps ETH last, and asks your wallet to approve each direct transfer.</p></div>
+      <div class="migration-workspace">
+        <div class="migration-controls">
+          <div class="wallet-panel">
+            <div class="wallet-panel-top"><div><div class="micro">SOURCE WALLET</div><div class="wallet-state" id="walletState">Not connected</div></div><button class="btn primary" id="connectWallet" type="button">Connect wallet</button></div>
+            <div class="wallet-balance" id="walletBalance">— ETH</div>
+            <p class="wallet-note">Connection is user-initiated. BUNKER MODE WALLET never requests a seed phrase and never receives custody.</p>
+          </div>
+          <div class="asset-builder">
+            <div class="field"><label for="assetType">Asset standard</label><div class="select-wrap"><select id="assetType"><option value="ETH">ETH</option><option value="ERC20">ERC-20</option><option value="ERC721">ERC-721</option><option value="ERC1155">ERC-1155</option></select></div></div>
+            <div class="field" id="contractField" hidden><label for="assetContract">Token contract</label><div class="input-wrap"><input id="assetContract" autocomplete="off" spellcheck="false" maxlength="42" placeholder="0x…"></div></div>
+            <div class="field-grid">
+              <div class="field" id="tokenIdField" hidden><label for="assetTokenId">Token ID</label><div class="input-wrap"><input id="assetTokenId" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field" id="amountField"><label for="assetAmount">Amount</label><div class="input-wrap"><input id="assetAmount" inputmode="decimal" placeholder="0.05"></div></div>
+            </div>
+            <button class="btn" id="addAsset" type="button">Verify and add asset</button>
+            <p class="builder-caption">ERC-20 decimals, balances and NFT ownership are read live from Ethereum before the asset enters the plan. No unlimited approvals are used.</p>
+          </div>
+        </div>
+        <div class="migration-plan-side">
+          <div class="plan-head"><strong>DIRECT TRANSFER PLAN</strong><span class="plan-count" id="planCount">00</span></div>
+          <div class="plan-list" id="migrationPlan"></div>
+          <div class="execution-panel">
+            <div class="field"><label for="migrationDestination">Fresh receive-only destination</label><div class="input-wrap"><input id="migrationDestination" autocomplete="off" spellcheck="false" maxlength="42" placeholder="0x…"><button class="paste" type="button" data-paste="migrationDestination">PASTE</button></div></div>
+            <div class="confirm-row"><input id="destinationConfirmed" type="checkbox"><label for="destinationConfirmed">I verified this exact destination independently in my trusted wallet or hardware device. I understand every asset will be sent there directly.</label></div>
+            <div class="field" id="hashRecovery" hidden><label for="recoveryHash">Recover submitted transaction hash</label><div class="input-wrap"><input id="recoveryHash" autocomplete="off" spellcheck="false" maxlength="66" placeholder="0x…"><button class="paste" id="recoverPreparedHash" type="button">RECOVER</button></div></div>
+            <div class="migration-notice" id="migrationNotice">Connect the source wallet to begin. Execution is limited to Ethereum mainnet and requires a fresh destination with empty code and zero outgoing nonce.</div>
+            <div class="execute-row"><div class="last-journal" id="lastJournal"></div><div class="form-actions"><button class="btn" id="reconcileJournal" type="button">Reconcile journal</button><button class="btn primary" id="executePlan" type="button" disabled>Execute direct migration</button></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="system">
+      <div class="section-head"><div><div class="eyebrow">02 / Product architecture</div><h2>No custody layer.</h2></div><p class="section-intro">BUNKER MODE WALLET is an orchestration and verification surface. The default route never asks users to deposit assets into a protocol-owned contract.</p></div>
+      <div class="architecture">
+        <article class="arch active"><span class="arch-no">01</span><h3>Inventory</h3><p>Resolve native assets, fungible tokens, NFTs, approvals, roles and protocol positions by chain.</p></article>
+        <article class="arch"><span class="arch-no">02</span><h3>Plan</h3><p>Order every action so dependent positions move first and native gas moves last.</p></article>
+        <article class="arch"><span class="arch-no">03</span><h3>Sign</h3><p>The wallet shows the exact destination, value and encoded call before requesting approval.</p></article>
+        <article class="arch"><span class="arch-no">04</span><h3>Verify</h3><p>Authenticate receipt identity and transaction fields, then flag unresolved steps.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="modes">
+      <div class="section-head"><div><div class="eyebrow">03 / Two execution paths</div><h2>Direct by default.</h2></div><p class="section-intro">The safest useful product does not require a custom contract. A bounded one-use migrator can exist later for compatible assets and advanced users.</p></div>
+      <div class="mode-grid">
+        <article class="mode"><div class="mode-tag">Recommended / Contractless</div><h3>Direct Route</h3><p>Each asset moves from the source wallet directly to the verified fresh destination through standard token and protocol calls.</p><ul><li><span>Custody</span><span>Never leaves user control</span></li><li><span>Approvals to BUNKER MODE WALLET</span><span>None</span></li><li><span>Compatibility</span><span>Highest</span></li><li><span>Transaction count</span><span>One or more</span></li></ul><button class="btn primary mode-action" data-mode="direct">Select direct route</button></article>
+        <article class="mode advanced"><div class="mode-tag">Advanced / Future module</div><h3>Bounded Migrator</h3><p>A one-use contract binds source, destination, assets, quantities and expiry before any approval is requested.</p><ul><li><span>Destination</span><span>Immutable</span></li><li><span>Admin / upgrade keys</span><span>None</span></li><li><span>Arbitrary calls</span><span>Forbidden</span></li><li><span>Best use</span><span>Compatible token batches</span></li></ul><button class="btn mode-action" data-mode="migrator">Inspect contract model</button></article>
+      </div>
+    </section>
+
+    <section class="section" id="manifest">
+      <div class="section-head"><div><div class="eyebrow">04 / Migration manifest</div><h2>Nothing forgotten.</h2></div><p class="section-intro">A migration is not complete when the largest balance moves. It is complete when every asset, permission and administrative responsibility is accounted for.</p></div>
+      <div class="manifest">
+        <aside class="manifest-side"><div class="micro">SEQUENCE / DEFAULT POLICY</div><h3>Gas moves last.</h3><p>The plan places the user-selected ETH amount last so earlier token and NFT transfers retain gas priority.</p><div class="counter">07</div></aside>
+        <div class="manifest-list">
+          <div class="step"><span class="step-no">01</span><div><h4>Protocol positions</h4><p>Withdraw, unwind or transfer supported DeFi positions.</p></div><span class="step-state">Adapter review</span></div>
+          <div class="step"><span class="step-no">02</span><div><h4>Fungible assets</h4><p>Move ERC-20 balances with exact token and amount previews.</p></div><span class="step-state">Direct transfer</span></div>
+          <div class="step"><span class="step-no">03</span><div><h4>Collectibles</h4><p>Transfer ERC-721 and ERC-1155 inventory to the destination.</p></div><span class="step-state">Direct transfer</span></div>
+          <div class="step"><span class="step-no">04</span><div><h4>Administrative roles</h4><p>Move ownership, multisig seats, guardians and access roles.</p></div><span class="step-state">Manual review</span></div>
+          <div class="step"><span class="step-no">05</span><div><h4>Residual approvals</h4><p>Revoke permissions that should not survive the migration.</p></div><span class="step-state">Revoke</span></div>
+          <div class="step"><span class="step-no">06</span><div><h4>Native balance</h4><p>Transfer the exact user-selected ETH amount after token and NFT steps.</p></div><span class="step-state">Final transfer</span></div>
+          <div class="step"><span class="step-no">07</span><div><h4>Reconciliation</h4><p>Verify receipt identity, approved transaction fields and unresolved journal steps.</p></div><span class="step-state">Evidence report</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles">
+      <article class="principle"><div class="principle-symbol">/0</div><h3>Zero hidden custody</h3><p>No project treasury sits between the source and destination. The product coordinates; the user's wallet executes.</p></article>
+      <article class="principle"><div class="principle-symbol">#</div><h3>Fresh means receive-only</h3><p>The destination should not sign during setup. Users verify it through their trusted wallet or hardware device.</p></article>
+      <article class="principle"><div class="principle-symbol">✓</div><h3>Evidence over promises</h3><p>Every completed step resolves to a transaction hash and a mined receipt matching the approved transaction fields.</p></article>
+    </section>
+  </main>
+
+  <footer><div class="footer-word">BUNKER<br>MODE<br>WALLET</div><div class="footer-copy"><strong>MOVE FUNDS. KEEP THE PUBLIC KEY HIDDEN.</strong><p>Independent product inspired by public discussion around controlled migration to fresh addresses. Not affiliated with Justin Drake, Ethereum Foundation or BunkerMode. Direct transfers require explicit approval in the user's own wallet.</p></div></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="migration-core.js"></script>
+<script src="scanner.js"></script>
+<script src="migration-app.js"></script>
+</body>
+</html>
